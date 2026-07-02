@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Portal Login - Abia State Police Command</title>
+    <!-- Stylesheets (linked back to parent css folder) -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-primary);">
+
+    <div class="form-container" style="max-width: 450px; margin: 0; border-color: var(--border-color); background-color: var(--bg-secondary);">
+        <div class="form-header">
+            <i class="fa-solid fa-building-shield" style="font-size: 3rem; color: var(--color-accent); margin-bottom: 1rem;"></i>
+            <h2 style="color: #ffffff;">Officer Secure Sign In</h2>
+            <p style="color: var(--text-secondary);">Abia State Police Command Crime reporting portal</p>
+        </div>
+
+        <!-- Error & Success Alerts -->
+        <div id="errorAlert" class="alert alert-error" style="display: none;">
+            <i class="fa-solid fa-circle-exclamation"></i> <span id="errorMsg"></span>
+        </div>
+        <div id="successAlert" class="alert alert-success" style="display: none;">
+            <i class="fa-solid fa-circle-check"></i> Sign-in verified! Opening console...
+        </div>
+
+        <form id="adminLoginForm">
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username" class="form-label" style="color: #ffffff;">Username</label>
+                <div style="position: relative;">
+                    <input type="text" id="username" class="form-control" 
+                           placeholder="Enter your system username" required 
+                           style="padding-left: 2.5rem; border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                    <i class="fa-solid fa-user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password" class="form-label" style="color: #ffffff;">Security Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="password" class="form-control" 
+                           placeholder="Enter your private password" required 
+                           style="padding-left: 2.5rem; border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                    <i class="fa-solid fa-key" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1rem; font-weight: 700; margin-top: 1rem;">
+                <i class="fa-solid fa-shield-halved"></i> Access Admin Console
+            </button>
+            
+            <div class="form-footer" style="margin-top: 1.5rem;">
+                <a href="../index.html" style="color: var(--text-muted); font-size: 0.85rem;">
+                    <i class="fa-solid fa-arrow-left-long"></i> Back to Public Homepage
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- E-portal logic scripts -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

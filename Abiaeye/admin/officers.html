@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Officer Management - Abia State Police Command</title>
+    <!-- Stylesheets (linked back to parent css folder) -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard-grid">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div>
+            <div class="sidebar-header">
+                <i class="fa-solid fa-building-shield" style="font-size: 1.75rem; color: var(--color-accent);"></i>
+                <div>
+                    <h1 class="sidebar-title">ABIA POLICE</h1>
+                    <span class="sidebar-subtitle">Admin Command</span>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-pie"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-link">
+                        <i class="fa-solid fa-envelope-open-text"></i> Manage Reports
+                    </a>
+                </li>
+                <li>
+                    <a href="statistics.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-column"></i> Crime Statistics
+                    </a>
+                </li>
+                <li id="officersLink" style="display: none;">
+                    <a href="officers.html" class="sidebar-link active">
+                        <i class="fa-solid fa-users-gear"></i> Officers Management
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Sidebar Footer Logged-in Info -->
+        <div style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                <div id="adminInitials" style="background-color: var(--color-accent); color: #ffffff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                    OF
+                </div>
+                <div>
+                    <h4 id="adminName" style="font-size: 0.9rem; font-weight: 600; color: #ffffff;">Officer Name</h4>
+                    <span id="adminRole" class="badge-role officer" style="font-size: 0.65rem; padding: 0.1rem 0.35rem;">
+                        Investigating Officer
+                    </span>
+                </div>
+            </div>
+            <a href="#" id="adminLogoutBtn" class="btn btn-danger" style="width: 100%; padding: 0.6rem; font-size: 0.85rem;">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Dashboard Area Content wrapper -->
+    <main class="dashboard-content">
+        <!-- Title Header -->
+        <div style="margin-bottom: 2rem;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; color: #ffffff;">Police Officer Management</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Deploy, monitor, and configure system permissions for command officers</p>
+        </div>
+
+        <!-- Success & Error Alerts -->
+        <div id="errorAlert" class="alert alert-error" style="display: none;">
+            <i class="fa-solid fa-circle-exclamation"></i> <span id="errorMsg"></span>
+        </div>
+        <div id="successAlert" class="alert alert-success" style="display: none;">
+            <i class="fa-solid fa-circle-check"></i> Officer action completed successfully!
+        </div>
+
+        <div class="row">
+            <!-- Left Column: Add / Edit Officer Form -->
+            <div class="col-md-6" style="margin-bottom: 1.5rem;">
+                <div class="case-section" style="padding: 1.75rem; height: 100%;">
+                    <h3 id="formTitle" style="font-size: 1.2rem; font-weight: 700; color: #ffffff; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-user-plus" style="color: var(--color-accent);"></i>
+                        Add Officer Profile
+                    </h3>
+
+                    <form id="officerForm">
+                        <input type="hidden" id="edit_officer_id">
+                        
+                        <!-- Full Name -->
+                        <div class="form-group">
+                            <label for="full_name" class="form-label" style="color: #ffffff;">Full Name</label>
+                            <input type="text" id="full_name" class="form-control" 
+                                   placeholder="e.g. Inspector Alex Okey" required 
+                                   style="border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="form-group">
+                            <label for="email" class="form-label" style="color: #ffffff;">Email Address</label>
+                            <input type="email" id="email" class="form-control" 
+                                   placeholder="alex.okey@abiapolice.gov.ng" required 
+                                   style="border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                        </div>
+
+                        <!-- Username & Role Grid -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="username" class="form-label" style="color: #ffffff;">Username</label>
+                                <input type="text" id="username" class="form-control" 
+                                       placeholder="alex_okey" required 
+                                       style="border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                            </div>
+                            <div class="form-group">
+                                <label for="role" class="form-label" style="color: #ffffff;">Duty Role</label>
+                                <select id="role" class="form-control" required 
+                                        style="border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                                    <option value="Investigating Officer">Investigating Officer</option>
+                                    <option value="Super Admin">Super Admin</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password" class="form-label" style="color: #ffffff;">Account Password</label>
+                            <input type="password" id="password" class="form-control" 
+                                   placeholder="Set temporary secure password" required 
+                                   style="border-color: var(--border-color); background-color: var(--bg-primary); color: #ffffff;">
+                            <small id="passwordHelp" style="color: var(--text-muted); font-size: 0.75rem; display: none;">Leave blank to keep current password when editing.</small>
+                        </div>
+
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <button type="submit" id="submitBtn" class="btn btn-primary" style="flex: 1; font-weight: 700;">
+                                <i class="fa-solid fa-user-check"></i> Register Officer
+                            </button>
+                            <button type="button" id="cancelEditBtn" class="btn btn-secondary" style="display: none; border-color: var(--border-color);">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: Officers List Table -->
+            <div class="col-md-6" style="margin-bottom: 1.5rem;">
+                <div class="case-section" style="padding: 1.75rem; height: 100%;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #ffffff; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-users" style="color: var(--color-accent);"></i>
+                        Active Duty Directory
+                    </h3>
+
+                    <div class="table-responsive" style="border-color: var(--border-color); background-color: var(--bg-secondary); margin-bottom: 0;">
+                        <table class="table">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <th style="background-color: var(--bg-primary); color: #ffffff;">Officer Details</th>
+                                    <th style="background-color: var(--bg-primary); color: #ffffff;">Duty Role</th>
+                                    <th style="background-color: var(--bg-primary); color: #ffffff; text-align: center;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="officersTableBody">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- E-portal logic scripts -->
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ABIAEYE - Secure and digital crime reporting system for the Abia State Police Command. Submit tips, report incidents, and track investigations.">
+    <title>ABIAEYE - Abia State Police Crime Reporting System</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Exact replication of the reference screen design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #070c14; /* Deep, solid dark navy/black background */
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+        }
+
+        .portal-container {
+            width: 100%;
+            max-width: 680px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.25rem;
+        }
+
+        /* Police Shield Logo SVG Styling */
+        .crest-logo {
+            width: 80px;
+            height: 90px;
+            filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
+        }
+        .crest-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Text Styles */
+        .system-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .system-subtitle {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #05c46b; /* Abia State Green Accent */
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .system-description {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #94a3b8; /* Soft blue-gray text */
+            line-height: 1.6;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* Gateway Card - Exact match to reference */
+        .gateway-card {
+            width: 100%;
+            background-color: #111827; /* Dark slate card fill */
+            border: 1px solid #1f2937; /* Thin border */
+            border-radius: 1rem; /* 16px rounded corners */
+            padding: 3rem 2.5rem;
+            text-align: left;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        /* Card Header & Green Wrench/Key Indicator */
+        .card-header-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-icon {
+            font-size: 1.25rem;
+            color: #00e676; /* Bright neon green as in image */
+        }
+
+        .header-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00e676;
+            letter-spacing: 0.02em;
+        }
+
+        /* Card Main Body Text */
+        .card-body-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Button Grid Layout */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        @media (max-width: 576px) {
+            .button-group {
+                flex-direction: column;
+            }
+        }
+
+        .btn-portal {
+            flex: 1;
+            padding: 1.1rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 0.5rem; /* 8px rounded corners */
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+
+        /* Left Button: Outline Dark Style */
+        .btn-citizen {
+            background-color: #171e2e;
+            border: 1px solid #374151;
+            color: #ffffff;
+        }
+
+        .btn-citizen:hover {
+            background-color: #242f47;
+            border-color: #4b5563;
+        }
+
+        /* Right Button: Solid Bright Neon Green */
+        .btn-admin {
+            background-color: #00e676; /* Bright neon green */
+            border: 1px solid #00e676;
+            color: #070c14; /* Dark text matching background */
+        }
+
+        .btn-admin:hover {
+            background-color: #00c853;
+            border-color: #00c853;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+        }
+
+        /* Footer Metadata */
+        .portal-footer {
+            font-size: 0.8rem;
+            color: #4b5563;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        
+        <!-- Centered Police Shield Crest SVG -->
+        <svg class="crest-logo" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer Shield Base -->
+            <path d="M50,5 L90,25 C90,65 75,95 50,115 C25,95 10,65 10,25 L50,5 Z" fill="#0c1d36" stroke="#ffffff" stroke-width="2.5"/>
+            <!-- Inner Shield Contrast -->
+            <path d="M50,11 L84,28 C84,62 71,88 50,106 C29,88 16,62 16,28 L50,11 Z" fill="#0d1f3b"/>
+            <!-- Abia Green Stripe -->
+            <path d="M50,11 L16,28 C16,40 18,50 22,60 L50,70 Z" fill="#05c46b" opacity="0.3"/>
+            <!-- Abia Gold Stripe -->
+            <path d="M50,11 L84,28 C84,40 82,50 78,60 L50,70 Z" fill="#ffd600" opacity="0.3"/>
+            <!-- Center Shield Emblem Star / Eagle -->
+            <polygon points="50,38 54,48 64,48 56,54 59,64 50,58 41,64 44,54 36,48 46,48" fill="#ffffff"/>
+            <!-- Shield Ribbon Banner -->
+            <path d="M25,82 Q50,92 75,82 L70,88 Q50,96 30,88 Z" fill="#ffffff"/>
+            <!-- NPF Anchor / Eagle Base -->
+            <path d="M48,68 L52,68 L52,78 L48,78 Z" fill="#ffffff"/>
+        </svg>
+
+        <!-- Centered Headline Text -->
+        <div>
+            <h1 class="system-title">Welcome to ABIAEYE</h1>
+            <div class="system-subtitle">Abia State Police Crime Reporting System</div>
+            <p class="system-description">
+                A secure digital platform that empowers citizens to report crimes, submit anonymous tips, track case progress, and support a safer Abia State through faster communication with the Police Command.
+            </p>
+        </div>
+
+        <!-- Access Card (Matches image precisely) -->
+        <div class="gateway-card">
+            
+            <div class="card-header-area">
+                <i class="fa-solid fa-shield-halved header-icon"></i>
+                <span class="header-text">Secure Gateway Access</span>
+            </div>
+
+            <p class="card-body-text">
+                Select the appropriate portal below. Citizens can file official reports, submit anonymous tips, or track investigation updates. Authorized police personnel can access the administration dashboard to manage cases.
+            </p>
+
+            <div class="button-group">
+                <!-- Citizen Entrance (Directly to unified reporting form) -->
+                <a href="report-crime.html" class="btn-portal btn-citizen">
+                    <i class="fa-solid fa-file-invoice" style="color: #00e676;"></i> Report a Crime
+                </a>
+                
+                <!-- Track Case Status -->
+                <button type="button" id="btnTrackCase" class="btn-portal btn-citizen" style="border-color: #ffd600; color: #ffd600; font-family: inherit;">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #ffd600;"></i> Track Case Status
+                </button>
+                
+                <!-- Admin Entrance -->
+                <a href="admin/admin-login.html" class="btn-portal btn-admin">
+                    <i class="fa-solid fa-lock"></i> Access Admin Portal
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Track Serial Prompt Modal -->
+        <div id="trackModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(7, 12, 20, 0.95); z-index: 9999; align-items: center; justify-content: center; padding: 1.5rem;">
+            <div class="gateway-card" style="max-width: 480px; text-align: center; gap: 1.5rem; border-color: #1f2937;">
+                <div class="card-header-area" style="justify-content: center;">
+                    <i class="fa-solid fa-magnifying-glass-location header-icon" style="color: #ffd600;"></i>
+                    <span class="header-text" style="color: #ffd600; font-weight: 700;">Track Case Status</span>
+                </div>
+                <p class="card-body-text" style="text-align: center; font-size: 0.92rem; color: #94a3b8;">
+                    Enter your unique tracking serial number (e.g. AB20261234) below to confirm your report status.
+                </p>
+                <form id="homeTrackForm" style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%;">
+                    <input type="text" id="trackSerialInput" class="btn-portal btn-citizen" placeholder="e.g. AB20261234" required style="width: 100%; border-radius: 0.375rem; text-transform: uppercase; font-weight: 700; text-align: center; letter-spacing: 0.05em; font-size: 1.1rem; border-color: #ffd600; background-color: #0c1220; color: #ffffff; padding: 0.85rem;">
+                    <div style="display: flex; gap: 1rem; width: 100%;">
+                        <button type="button" id="btnCancelTrack" class="btn-portal btn-citizen" style="flex: 1; padding: 0.8rem; font-weight: 700;">Cancel</button>
+                        <button type="submit" class="btn-portal btn-admin" style="flex: 1; padding: 0.8rem; background-color: #ffd600; border-color: #ffd600; color: #070c14; font-weight: 700;">Track Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="portal-footer">
+            &copy; 2026 Abia State Police Command. Official Crime Reporting Gateway.
+        </div>
+
+    </div>
+
+    <script>
+        const btnTrackCase = document.getElementById("btnTrackCase");
+        const trackModal = document.getElementById("trackModal");
+        const btnCancelTrack = document.getElementById("btnCancelTrack");
+        const homeTrackForm = document.getElementById("homeTrackForm");
+        const trackSerialInput = document.getElementById("trackSerialInput");
+
+        if (btnTrackCase && trackModal && btnCancelTrack) {
+            btnTrackCase.onclick = function() {
+                trackModal.style.display = "flex";
+                trackSerialInput.focus();
+            };
+            btnCancelTrack.onclick = function() {
+                trackModal.style.display = "none";
+                homeTrackForm.reset();
+            };
+            homeTrackForm.onsubmit = function(e) {
+                e.preventDefault();
+                const ref = trackSerialInput.value.trim().toUpperCase();
+                if (ref) {
+                    window.location.href = `track-report.html?ref=${ref}`;
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure and anonymous crime reporting portal for the Abia State Police Command. Submit and track reports online.">
+    <title>Track Case Status - Abia State Police Command</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Emergency Contact Top Strip -->
+    <div class="emergency-strip">
+        <i class="fa-solid fa-triangle-exclamation"></i> Emergency Hotlines: 
+        <a href="tel:08033333333">0803 333 3333</a>, 
+        <a href="tel:08055555555">0805 555 5555</a> | Call 911 for Immediate Dispatch
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <i class="fa-solid fa-shield-halved text-accent" style="color: var(--color-accent);"></i>
+                <span>ABIA STATE POLICE</span>
+                <span class="badge">CRS</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-solid fa-house"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="track-report.html" class="nav-link active">
+                        <i class="fa-solid fa-magnifying-glass"></i> Track Report
+                    </a>
+                </li>
+                <li>
+                    <a href="report-crime.html" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem; border-radius: var(--radius-sm);">
+                        <i class="fa-solid fa-file-invoice"></i> Report Crime
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tracking Container -->
+    <div class="container" style="flex: 1; min-height: 70vh; padding: 4rem 1.5rem;">
+        
+        <!-- Track Search Form Card -->
+        <div class="form-container" style="max-width: 550px; margin: 0 auto 3rem auto; padding: 2.5rem 2rem;">
+            <div class="form-header" style="margin-bottom: 1.5rem;">
+                <i class="fa-solid fa-magnifying-glass-location" style="font-size: 2.5rem; color: var(--color-accent); margin-bottom: 0.5rem;"></i>
+                <h2>Track Case Status</h2>
+                <p>Enter your unique Reference Number to view live progress updates</p>
+            </div>
+
+            <!-- Error alert -->
+            <div id="errorAlert" class="alert alert-error" style="display: none;">
+                <i class="fa-solid fa-circle-exclamation"></i> Tracking code not found or serial number not found.
+            </div>
+
+            <form id="trackForm">
+                <div class="form-group">
+                    <label for="reference_no" class="form-label">Reference Number</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="reference_no" class="form-control" 
+                               placeholder="e.g. AB20260001" required 
+                               style="flex: 1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.05rem;">
+                        <button type="submit" id="searchBtn" class="btn btn-primary" style="padding: 0.75rem 1.25rem;">
+                            <i class="fa-solid fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tracking Results (Hidden by default, shown via JS) -->
+        <div id="resultsCard" style="display: none; max-width: 700px; margin: 0 auto; background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 3rem 2.5rem; box-shadow: var(--shadow-lg);">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600;">Incident Tracking Result</span>
+                    <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--color-brand-light); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-folder-open" style="color: var(--color-accent);"></i>
+                        Case: <span id="resRef"></span>
+                    </h3>
+                </div>
+                <div>
+                    <span id="resStatusBadge" class="status-badge status-pending" style="font-size: 0.9rem; padding: 0.4rem 1rem;">Pending</span>
+                </div>
+            </div>
+
+            <!-- Case Summary Details Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem;">
+                <div>
+                    <h4 style="font-size: 0.8rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Crime Category</h4>
+                    <p id="resCategory" style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary);"></p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.8rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Lodge Date</h4>
+                    <p id="resDate" style="font-size: 1.05rem; color: var(--text-primary);"></p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.8rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">LGA Location</h4>
+                    <p id="resLocation" style="font-size: 1.05rem; color: var(--text-primary);"></p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.8rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Reporter Identity</h4>
+                    <p id="resReporter" style="font-size: 1.05rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.35rem;"></p>
+                </div>
+            </div>
+
+            <!-- Progress Flow Visual Line -->
+            <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">Case Progression Timeline</h4>
+            
+            <div id="progressionTimeline" style="display: flex; justify-content: space-between; position: relative; margin-bottom: 1rem; align-items: center; width: 100%;">
+                <!-- Horizontal Connecting Line -->
+                <div style="position: absolute; top: 12px; left: 0; right: 0; height: 3px; background-color: var(--border-color); z-index: 1;"></div>
+                <div id="timelineProgressFill" style="position: absolute; top: 12px; left: 0; width: 0%; height: 3px; background-color: var(--color-teal); z-index: 1;"></div>
+
+                <!-- Point 1: Pending -->
+                <div class="timeline-step" data-step="Pending" style="position: relative; z-index: 2; text-align: center;">
+                    <div class="dot" style="width: 26px; height: 26px; border-radius: 50%; background-color: var(--border-color); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin: 0 auto 0.5rem auto;">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); display: block;">Reported</span>
+                </div>
+
+                <!-- Point 2: Assigned -->
+                <div class="timeline-step" data-step="Assigned" style="position: relative; z-index: 2; text-align: center;">
+                    <div class="dot" style="width: 26px; height: 26px; border-radius: 50%; background-color: var(--border-color); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin: 0 auto 0.5rem auto;">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); display: block;">Assigned</span>
+                </div>
+
+                <!-- Point 3: Under Investigation -->
+                <div class="timeline-step" data-step="Under Investigation" style="position: relative; z-index: 2; text-align: center;">
+                    <div class="dot" style="width: 26px; height: 26px; border-radius: 50%; background-color: var(--border-color); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin: 0 auto 0.5rem auto;">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); display: block;">Investigating</span>
+                </div>
+
+                <!-- Point 4: Resolved -->
+                <div class="timeline-step" data-step="Resolved" style="position: relative; z-index: 2; text-align: center;">
+                    <div class="dot" style="width: 26px; height: 26px; border-radius: 50%; background-color: var(--border-color); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin: 0 auto 0.5rem auto;">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 500; color: var(--text-muted); display: block;">Resolved</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h4 style="display: flex; align-items: center; gap: 0.5rem; color: #ffffff;">
+                        <i class="fa-solid fa-shield-halved" style="color: var(--color-accent);"></i>
+                        Abia State Police Command
+                    </h4>
+                    <p style="margin-top: 1rem;">
+                        Dedicated to protecting life and property, maintaining law and order, and preventing crime across Abia State. Our digital portal ensures safe, secure, and swift crime reporting.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--color-accent);"></i> Home</a></li>
+                        <li><a href="anonymous-report.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--color-accent);"></i> Anonymous Report</a></li>
+                        <li><a href="track-report.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--color-accent);"></i> Track Report</a></li>
+                        <li><a href="admin/admin-login.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--color-accent);"></i> Officer Portal</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Emergency Helpdesk</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-phone" style="color: var(--color-accent);"></i> 0803 333 3333</li>
+                        <li><i class="fa-solid fa-phone" style="color: var(--color-accent);"></i> 0805 555 5555</li>
+                        <li><i class="fa-solid fa-envelope" style="color: var(--color-accent);"></i> contact@abiapolice.gov.ng</li>
+                        <li><i class="fa-solid fa-location-dot" style="color: var(--color-accent);"></i> Police Headquarters, Umuahia, Abia State.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Abia State Police Command. All Rights Reserved.</p>
+                <p>Developed for the Abia State Police Command Crime Reporting System.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- E-portal logic scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

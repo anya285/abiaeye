@@ -1,0 +1,310 @@
+/* --- Admin-specific Dashboard Styles --- */
+
+/* Force Admin dashboard to use dark theme */
+:root {
+    --bg-primary: #0b1329;
+    --bg-secondary: #111a36;
+    --bg-tertiary: #1c2a4e;
+    --bg-glass: rgba(17, 26, 54, 0.85);
+    --border-color: #27375c;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --color-brand: #090e1c;
+    --color-brand-light: #111a36;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Sidebar Dashboard Adjustments */
+.sidebar {
+    background-color: var(--color-brand);
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-logo {
+    height: 35px;
+    width: 35px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.sidebar-subtitle {
+    font-size: 0.7rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Admin Card Metrics */
+.admin-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-fast);
+}
+
+.admin-card:hover {
+    border-color: rgba(217, 119, 6, 0.4);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.admin-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.admin-card-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-card-icon {
+    font-size: 1.25rem;
+    color: var(--color-accent);
+}
+
+.admin-card-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+/* Statistics Charts Grid */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (max-width: 992px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-container {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.chart-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Filter Bar styles */
+.filter-bar {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) auto;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+@media (max-width: 576px) {
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Case Details Layout */
+.case-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    .case-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.case-section {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.case-header-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.case-title-area h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.case-meta {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.case-field-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.case-field-value {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+}
+
+.evidence-thumbnail {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    padding: 0.25rem;
+    background-color: var(--bg-tertiary);
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.evidence-thumbnail:hover {
+    transform: scale(1.02);
+}
+
+/* Audit Log / History List */
+.history-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+    list-style: none;
+}
+
+.history-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 4px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
+.history-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.history-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    border: 2px solid var(--bg-secondary);
+}
+
+.history-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.history-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.history-desc strong {
+    color: #ffffff;
+}
+
+/* Officers management actions */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge-role {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.badge-role.super {
+    border-color: rgba(220, 38, 38, 0.4);
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #ef4444;
+}
+
+.badge-role.officer {
+    border-color: rgba(13, 148, 136, 0.4);
+    background-color: rgba(13, 148, 136, 0.1);
+    color: #2dd4bf;
+}
