@@ -274,79 +274,164 @@
             box-shadow: 0 0 0 2px rgba(0, 230, 118, 0.15);
         }
 
-        /* Updated File Upload Styling */
-        .file-upload-wrapper {
-            position: relative;
-            display: block;
+        /* Updated Incident Details Section Styling */
+        .incident-details-section {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.05) 0%, rgba(255, 214, 0, 0.02) 100%);
+            border: 1px solid rgba(0, 230, 118, 0.15);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
         }
 
-        .file-upload-label {
+        .incident-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .incident-icon {
+            font-size: 1.25rem;
+            color: #00e676;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            width: 100%;
-            background: linear-gradient(135deg, rgba(0, 230, 118, 0.08) 0%, rgba(0, 230, 118, 0.04) 100%);
-            border: 2px dashed #00e676;
-            border-radius: 0.5rem;
-            padding: 2rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+        }
+
+        .incident-title {
+            font-size: 0.9rem;
+            font-weight: 700;
             color: #00e676;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .file-upload-label:hover {
-            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 230, 118, 0.08) 100%);
-            border-color: #00c853;
-            color: #00c853;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+        .incident-fields-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
         }
 
-        .file-upload-icon {
-            font-size: 1.75rem;
-            display: flex;
-            align-items: center;
+        @media (max-width: 768px) {
+            .incident-fields-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .file-upload-text {
+        .field-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
-            text-align: left;
+            gap: 0.4rem;
         }
 
-        .file-upload-main {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .file-upload-hint {
-            font-size: 0.8rem;
+        .field-label {
+            font-size: 0.7rem;
+            font-weight: 700;
             color: #94a3b8;
-            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
-        #evidence {
-            display: none;
-        }
-
-        .file-name-display {
-            margin-top: 0.5rem;
-            padding: 0.75rem;
-            background-color: rgba(0, 230, 118, 0.05);
-            border: 1px solid rgba(0, 230, 118, 0.2);
-            border-radius: 0.375rem;
+        .field-icon-wrapper {
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: #00e676;
-            display: none;
         }
 
-        .file-name-display.active {
+        .field-icon {
+            position: absolute;
+            left: 0.75rem;
+            color: #00e676;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .field-input-with-icon {
+            width: 100%;
+            background-color: #0c1220;
+            border: 1.5px solid #1f2937;
+            border-radius: 0.5rem;
+            padding: 0.85rem 0.85rem 0.85rem 2.5rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .field-input-with-icon:hover {
+            border-color: #00e676;
+            box-shadow: 0 0 8px rgba(0, 230, 118, 0.1);
+        }
+
+        .field-input-with-icon:focus {
+            outline: none;
+            border-color: #00e676;
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.2);
+        }
+
+        .field-input-with-icon option {
+            background-color: #0c1220;
+            color: #ffffff;
+        }
+
+        .location-section {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .location-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .location-wrapper {
+            position: relative;
             display: flex;
+            align-items: center;
+        }
+
+        .location-icon {
+            position: absolute;
+            left: 0.75rem;
+            color: #ffd600;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .location-input {
+            width: 100%;
+            background-color: #0c1220;
+            border: 1.5px solid #1f2937;
+            border-radius: 0.5rem;
+            padding: 0.85rem 0.85rem 0.85rem 2.5rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .location-input:hover {
+            border-color: #ffd600;
+            box-shadow: 0 0 8px rgba(255, 214, 0, 0.1);
+        }
+
+        .location-input:focus {
+            outline: none;
+            border-color: #ffd600;
+            box-shadow: 0 0 12px rgba(255, 214, 0, 0.2);
         }
 
         /* Dynamic Reporter Section Folding */
@@ -840,63 +925,73 @@
                         </div>
                     </div>
 
-                    <!-- 2. CRIME INFORMATION -->
-                    <div class="section-header">Incident Details</div>
-
-                    <div class="form-grid-2">
-                        <div class="form-group">
-                            <label for="crime_type" class="login-label">Crime Category *</label>
-                            <select id="crime_type" class="login-input" required style="cursor: pointer;">
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="Theft & Robbery">Theft & Robbery</option>
-                                <option value="Assault & Violence">Assault & Violence</option>
-                                <option value="Cybercrime / Fraud">Cybercrime / Fraud</option>
-                                <option value="Kidnapping / Abduction">Kidnapping / Abduction</option>
-                                <option value="Domestic Violence">Domestic Violence</option>
-                                <option value="Vandalism & Destruction">Vandalism & Destruction</option>
-                                <option value="Other Offences">Other Offences</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-grid-2" style="gap: 0.5rem; margin: 0; padding: 0;">
-                            <div class="form-group">
-                                <label for="crime_date" class="login-label">Date *</label>
-                                <input type="date" id="crime_date" class="login-input" required>
+                    <!-- 2. CRIME INFORMATION - UPDATED WITH MODERN DESIGN -->
+                    <div class="incident-details-section">
+                        <div class="incident-header">
+                            <div class="incident-icon">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
                             </div>
-                            <div class="form-group">
-                                <label for="crime_time" class="login-label">Time *</label>
-                                <input type="time" id="crime_time" class="login-input" required>
+                            <div class="incident-title">Incident Details</div>
+                        </div>
+
+                        <div class="incident-fields-grid">
+                            <!-- Crime Category -->
+                            <div class="field-wrapper">
+                                <label class="field-label">Crime Category *</label>
+                                <div class="field-icon-wrapper">
+                                    <i class="field-icon fa-solid fa-list"></i>
+                                    <select id="crime_type" class="field-input-with-icon" required>
+                                        <option value="" disabled selected>Select Category</option>
+                                        <option value="Theft & Robbery">Theft & Robbery</option>
+                                        <option value="Assault & Violence">Assault & Violence</option>
+                                        <option value="Cybercrime / Fraud">Cybercrime / Fraud</option>
+                                        <option value="Kidnapping / Abduction">Kidnapping / Abduction</option>
+                                        <option value="Domestic Violence">Domestic Violence</option>
+                                        <option value="Vandalism & Destruction">Vandalism & Destruction</option>
+                                        <option value="Other Offences">Other Offences</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Date -->
+                            <div class="field-wrapper">
+                                <label class="field-label">Date *</label>
+                                <div class="field-icon-wrapper">
+                                    <i class="field-icon fa-solid fa-calendar"></i>
+                                    <input type="date" id="crime_date" class="field-input-with-icon" required>
+                                </div>
+                            </div>
+
+                            <!-- Time -->
+                            <div class="field-wrapper">
+                                <label class="field-label">Time *</label>
+                                <div class="field-icon-wrapper">
+                                    <i class="field-icon fa-solid fa-clock"></i>
+                                    <input type="time" id="crime_time" class="field-input-with-icon" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location Section -->
+                        <div class="location-section">
+                            <label class="location-label">Location / Landmark *</label>
+                            <div class="location-wrapper">
+                                <i class="location-icon fa-solid fa-map-pin"></i>
+                                <input type="text" id="location" class="location-input" placeholder="e.g. Near Tower, Aba LGA, Umuahia" required>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="location" class="login-label">Location / Landmark *</label>
-                        <input type="text" id="location" class="login-input" placeholder="e.g. Near Tower, Aba LGA, Umuahia" required>
-                    </div>
-
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="description" class="login-label">Detailed Description *</label>
                         <textarea id="description" class="login-input" rows="4" placeholder="Provide details of the incident, suspects, threats..." required style="resize: vertical; min-height: 8rem;"></textarea>
                     </div>
 
-                    <!-- Updated File Upload Section -->
+                    <!-- File Upload -->
                     <div class="form-group">
                         <label for="evidence" class="login-label">Attach Evidence Photograph (Optional)</label>
-                        <label for="evidence" class="file-upload-label">
-                            <div class="file-upload-icon">
-                                <i class="fa-solid fa-cloud-arrow-up"></i>
-                            </div>
-                            <div class="file-upload-text">
-                                <span class="file-upload-main">Drop image here or click to browse</span>
-                                <span class="file-upload-hint">PNG, JPG up to 10MB</span>
-                            </div>
-                        </label>
-                        <input type="file" id="evidence" accept="image/*">
-                        <div class="file-name-display">
-                            <i class="fa-solid fa-check-circle"></i>
-                            <span id="fileName"></span>
-                        </div>
+                        <input type="file" id="evidence" class="login-input" accept="image/*" style="cursor: pointer;">
                     </div>
 
                     <button type="submit" id="submitBtn" class="btn-submit-report">
@@ -943,46 +1038,6 @@
         anonToggle.addEventListener('change', function() {
             setAnonymousMode(this.checked);
         });
-
-        // File Upload Handler
-        const fileInput = document.getElementById('evidence');
-        const fileLabel = document.querySelector('.file-upload-label');
-        const fileDisplay = document.querySelector('.file-name-display');
-        const fileNameSpan = document.getElementById('fileName');
-
-        fileLabel.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileLabel.style.backgroundColor = 'rgba(0, 230, 118, 0.15)';
-            fileLabel.style.borderColor = '#00c853';
-        });
-
-        fileLabel.addEventListener('dragleave', () => {
-            fileLabel.style.backgroundColor = 'rgba(0, 230, 118, 0.08)';
-            fileLabel.style.borderColor = '#00e676';
-        });
-
-        fileLabel.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileLabel.style.backgroundColor = 'rgba(0, 230, 118, 0.08)';
-            fileLabel.style.borderColor = '#00e676';
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0 && files[0].type.startsWith('image/')) {
-                fileInput.files = files;
-                updateFileDisplay(files[0].name);
-            }
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                updateFileDisplay(e.target.files[0].name);
-            }
-        });
-
-        function updateFileDisplay(fileName) {
-            fileNameSpan.textContent = fileName;
-            fileDisplay.classList.add('active');
-        }
 
         // Initialize state on page load
         document.addEventListener("DOMContentLoaded", function() {
