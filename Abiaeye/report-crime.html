@@ -274,6 +274,81 @@
             box-shadow: 0 0 0 2px rgba(0, 230, 118, 0.15);
         }
 
+        /* Updated File Upload Styling */
+        .file-upload-wrapper {
+            position: relative;
+            display: block;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.08) 0%, rgba(0, 230, 118, 0.04) 100%);
+            border: 2px dashed #00e676;
+            border-radius: 0.5rem;
+            padding: 2rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #00e676;
+        }
+
+        .file-upload-label:hover {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 230, 118, 0.08) 100%);
+            border-color: #00c853;
+            color: #00c853;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+        }
+
+        .file-upload-icon {
+            font-size: 1.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .file-upload-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            text-align: left;
+        }
+
+        .file-upload-main {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .file-upload-hint {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        #evidence {
+            display: none;
+        }
+
+        .file-name-display {
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            background-color: rgba(0, 230, 118, 0.05);
+            border: 1px solid rgba(0, 230, 118, 0.2);
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #00e676;
+            display: none;
+        }
+
+        .file-name-display.active {
+            display: flex;
+        }
+
         /* Dynamic Reporter Section Folding */
         .reporter-section-panel {
             display: flex;
@@ -616,7 +691,7 @@
             </div>
 
             <!-- Live Track Progress Button -->
-            <button type="button" id="btnTrackProgress" style="width: 100%; background-color: #171e2e; border: 1px solid #374151; color: #ffffff; padding: 0.85rem; font-weight: 700; border-radius: 0.375rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; text-transform: uppercase; font-size: 0.85rem; font-family: inherit;">
+            <button type="button" id="btnTrackProgress" style="width: 100%; background-color: #171e2e; border: 1px solid #374151; color: #ffffff; padding: 0.85rem; font-weight: 700; border-radius: 0.375rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.2s ease;">
                 <i class="fa-solid fa-route" style="color: #00e676;"></i> Track Report Progress Live
             </button>
 
@@ -633,7 +708,7 @@
 
                     <!-- Step 0: Received -->
                     <div class="receipt-step" data-step="0" style="position: relative; z-index: 2; text-align: center; flex: 1;">
-                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; margin: 0 auto 0.4rem auto; transition: all 0.3s ease;">
+                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.25rem;">
                             <i class="fa-solid fa-circle"></i>
                         </div>
                         <span style="font-size: 0.75rem; font-weight: 700; color: #94a3b8;">Received</span>
@@ -641,7 +716,7 @@
 
                     <!-- Step 1: Processing -->
                     <div class="receipt-step" data-step="1" style="position: relative; z-index: 2; text-align: center; flex: 1;">
-                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; margin: 0 auto 0.4rem auto; transition: all 0.3s ease;">
+                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.25rem;">
                             <i class="fa-solid fa-circle"></i>
                         </div>
                         <span style="font-size: 0.75rem; font-weight: 700; color: #94a3b8;">Processing</span>
@@ -649,7 +724,7 @@
 
                     <!-- Step 2: In Progress -->
                     <div class="receipt-step" data-step="2" style="position: relative; z-index: 2; text-align: center; flex: 1;">
-                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; margin: 0 auto 0.4rem auto; transition: all 0.3s ease;">
+                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.25rem;">
                             <i class="fa-solid fa-circle"></i>
                         </div>
                         <span style="font-size: 0.75rem; font-weight: 700; color: #94a3b8;">In Progress</span>
@@ -657,7 +732,7 @@
 
                     <!-- Step 3: Case Solved -->
                     <div class="receipt-step" data-step="3" style="position: relative; z-index: 2; text-align: center; flex: 1;">
-                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; margin: 0 auto 0.4rem auto; transition: all 0.3s ease;">
+                        <div class="step-dot" style="width: 24px; height: 24px; border-radius: 50%; background-color: #1f2937; color: #94a3b8; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.25rem;">
                             <i class="fa-solid fa-circle"></i>
                         </div>
                         <span style="font-size: 0.75rem; font-weight: 700; color: #94a3b8;">Case Solved</span>
@@ -665,13 +740,13 @@
                 </div>
                 
                 <!-- Live Description Status -->
-                <div id="receiptStatusDesc" style="font-size: 0.8rem; color: #94a3b8; text-align: center; margin-top: 0.75rem; font-style: italic; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 0.5rem; font-weight: 500;">
+                <div id="receiptStatusDesc" style="font-size: 0.8rem; color: #94a3b8; text-align: center; margin-top: 0.75rem; font-style: italic; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 0.75rem;">
                     Initializing live tracking feed...
                 </div>
             </div>
 
             <p style="color: #64748b; font-size: 0.82rem; text-align: center; line-height: 1.4; margin: 0 0.5rem;">
-                <i class="fa-solid fa-triangle-exclamation" style="color: #ffd600;"></i> Please print this details card or copy the serial number. You will need it to track your case progress at the police command.
+                <i class="fa-solid fa-triangle-exclamation" style="color: #ffd600;"></i> Please print this details card or copy the serial number. You will need it to track your case progress at any time.
             </p>
 
             <!-- Actions -->
@@ -802,12 +877,26 @@
 
                     <div class="form-group">
                         <label for="description" class="login-label">Detailed Description *</label>
-                        <textarea id="description" class="login-input" rows="4" placeholder="Provide details of the incident, suspects, threats..." required style="resize: vertical; min-height: 80px;"></textarea>
+                        <textarea id="description" class="login-input" rows="4" placeholder="Provide details of the incident, suspects, threats..." required style="resize: vertical; min-height: 8rem;"></textarea>
                     </div>
 
+                    <!-- Updated File Upload Section -->
                     <div class="form-group">
                         <label for="evidence" class="login-label">Attach Evidence Photograph (Optional)</label>
-                        <input type="file" id="evidence" class="login-input" accept="image/*" style="cursor: pointer;">
+                        <label for="evidence" class="file-upload-label">
+                            <div class="file-upload-icon">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <div class="file-upload-text">
+                                <span class="file-upload-main">Drop image here or click to browse</span>
+                                <span class="file-upload-hint">PNG, JPG up to 10MB</span>
+                            </div>
+                        </label>
+                        <input type="file" id="evidence" accept="image/*">
+                        <div class="file-name-display">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span id="fileName"></span>
+                        </div>
                     </div>
 
                     <button type="submit" id="submitBtn" class="btn-submit-report">
@@ -854,6 +943,46 @@
         anonToggle.addEventListener('change', function() {
             setAnonymousMode(this.checked);
         });
+
+        // File Upload Handler
+        const fileInput = document.getElementById('evidence');
+        const fileLabel = document.querySelector('.file-upload-label');
+        const fileDisplay = document.querySelector('.file-name-display');
+        const fileNameSpan = document.getElementById('fileName');
+
+        fileLabel.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileLabel.style.backgroundColor = 'rgba(0, 230, 118, 0.15)';
+            fileLabel.style.borderColor = '#00c853';
+        });
+
+        fileLabel.addEventListener('dragleave', () => {
+            fileLabel.style.backgroundColor = 'rgba(0, 230, 118, 0.08)';
+            fileLabel.style.borderColor = '#00e676';
+        });
+
+        fileLabel.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileLabel.style.backgroundColor = 'rgba(0, 230, 118, 0.08)';
+            fileLabel.style.borderColor = '#00e676';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                fileInput.files = files;
+                updateFileDisplay(files[0].name);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                updateFileDisplay(e.target.files[0].name);
+            }
+        });
+
+        function updateFileDisplay(fileName) {
+            fileNameSpan.textContent = fileName;
+            fileDisplay.classList.add('active');
+        }
 
         // Initialize state on page load
         document.addEventListener("DOMContentLoaded", function() {
