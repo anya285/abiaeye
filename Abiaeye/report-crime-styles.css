@@ -1,0 +1,161 @@
+        /* Updated Incident Details Section Styling */
+        .incident-details-section {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.05) 0%, rgba(255, 214, 0, 0.02) 100%);
+            border: 1px solid rgba(0, 230, 118, 0.15);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .incident-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .incident-icon {
+            font-size: 1.25rem;
+            color: #00e676;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .incident-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #00e676;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .incident-fields-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .incident-fields-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .field-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .field-icon-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .field-icon {
+            position: absolute;
+            left: 0.75rem;
+            color: #00e676;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .field-input-with-icon {
+            width: 100%;
+            background-color: #0c1220;
+            border: 1.5px solid #1f2937;
+            border-radius: 0.5rem;
+            padding: 0.85rem 0.85rem 0.85rem 2.5rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .field-input-with-icon:hover {
+            border-color: #00e676;
+            box-shadow: 0 0 8px rgba(0, 230, 118, 0.1);
+        }
+
+        .field-input-with-icon:focus {
+            outline: none;
+            border-color: #00e676;
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.2);
+        }
+
+        .field-input-with-icon option {
+            background-color: #0c1220;
+            color: #ffffff;
+        }
+
+        .location-section {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .location-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .location-input {
+            width: 100%;
+            background-color: #0c1220;
+            border: 1.5px solid #1f2937;
+            border-radius: 0.5rem;
+            padding: 0.85rem 0.85rem 0.85rem 2.5rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .location-input:hover {
+            border-color: #ffd600;
+            box-shadow: 0 0 8px rgba(255, 214, 0, 0.1);
+        }
+
+        .location-input:focus {
+            outline: none;
+            border-color: #ffd600;
+            box-shadow: 0 0 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .location-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .location-icon {
+            position: absolute;
+            left: 0.75rem;
+            color: #ffd600;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
