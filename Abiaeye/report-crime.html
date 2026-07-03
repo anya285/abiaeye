@@ -434,6 +434,102 @@
             box-shadow: 0 0 12px rgba(255, 214, 0, 0.2);
         }
 
+        /* Modern File Upload Styling */
+        .file-upload-wrapper {
+            position: relative;
+            display: block;
+        }
+
+        .file-upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.08) 0%, rgba(0, 230, 118, 0.04) 100%);
+            border: 2px dashed #00e676;
+            border-radius: 0.65rem;
+            padding: 2.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #00e676;
+        }
+
+        .file-upload-label:hover {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 230, 118, 0.08) 100%);
+            border-color: #00c853;
+            color: #00c853;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .file-upload-label.active {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.2) 0%, rgba(0, 230, 118, 0.12) 100%);
+            border-color: #00c853;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
+        }
+
+        .file-upload-icon {
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .file-upload-label:hover .file-upload-icon {
+            transform: scale(1.1);
+        }
+
+        .file-upload-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            text-align: center;
+        }
+
+        .file-upload-main {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #00e676;
+        }
+
+        .file-upload-hint {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        #evidence {
+            display: none;
+        }
+
+        .file-name-display {
+            margin-top: 0.75rem;
+            padding: 0.85rem 1rem;
+            background-color: rgba(0, 230, 118, 0.08);
+            border: 1px solid rgba(0, 230, 118, 0.25);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: #00e676;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .file-name-display.hidden {
+            display: none;
+        }
+
+        .file-name-icon {
+            font-size: 1.1rem;
+            color: #00e676;
+        }
+
         /* Dynamic Reporter Section Folding */
         .reporter-section-panel {
             display: flex;
@@ -988,10 +1084,23 @@
                         <textarea id="description" class="login-input" rows="4" placeholder="Provide details of the incident, suspects, threats..." required style="resize: vertical; min-height: 8rem;"></textarea>
                     </div>
 
-                    <!-- File Upload -->
+                    <!-- Modern File Upload Section -->
                     <div class="form-group">
                         <label for="evidence" class="login-label">Attach Evidence Photograph (Optional)</label>
-                        <input type="file" id="evidence" class="login-input" accept="image/*" style="cursor: pointer;">
+                        <label for="evidence" class="file-upload-label" id="fileUploadLabel">
+                            <div class="file-upload-icon">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <div class="file-upload-text">
+                                <span class="file-upload-main">Click to upload or drag and drop</span>
+                                <span class="file-upload-hint">PNG, JPG, GIF up to 10MB</span>
+                            </div>
+                        </label>
+                        <input type="file" id="evidence" accept="image/*">
+                        <div class="file-name-display hidden" id="fileNameDisplay">
+                            <i class="file-name-icon fa-solid fa-check-circle"></i>
+                            <span id="fileName"></span>
+                        </div>
                     </div>
 
                     <button type="submit" id="submitBtn" class="btn-submit-report">
@@ -1038,6 +1147,49 @@
         anonToggle.addEventListener('change', function() {
             setAnonymousMode(this.checked);
         });
+
+        // File Upload Handler
+        const fileInput = document.getElementById('evidence');
+        const fileLabel = document.getElementById('fileUploadLabel');
+        const fileDisplay = document.getElementById('fileNameDisplay');
+        const fileNameSpan = document.getElementById('fileName');
+
+        // Drag and drop events
+        fileLabel.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileLabel.classList.add('active');
+        });
+
+        fileLabel.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileLabel.classList.remove('active');
+        });
+
+        fileLabel.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileLabel.classList.remove('active');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                fileInput.files = files;
+                updateFileDisplay(files[0].name);
+            }
+        });
+
+        // File input change event
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                updateFileDisplay(e.target.files[0].name);
+            }
+        });
+
+        function updateFileDisplay(fileName) {
+            fileNameSpan.textContent = fileName;
+            fileDisplay.classList.remove('hidden');
+        }
 
         // Initialize state on page load
         document.addEventListener("DOMContentLoaded", function() {
